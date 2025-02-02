@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            position: relative;
+            margin: 0;
+            overflow: hidden;
+            padding: 20px;
+        }
+        #container {
+            margin-top: 20px;
+            position: relative;
+        }
+        #tulips {
+            display: flex;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+            align-items: center;
+            width: 100%;
+        }
+        #question {
+            font-size: 30px;
+            margin-left: 10px;
+        }
+        #pig {
+            display: block;
+            margin-bottom: 20px;
+            width: 250px; /* Adjusted size for mobile */
+            max-width: 100%; /* Ensures responsiveness */
+            height: auto;
+        }
+        #yes, #no {
+            font-size: 24px; /* Adjusted font size for mobile */
+            padding: 15px 30px; /* Adjusted padding */
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            width: 80%; /* Make buttons responsive */
+            max-width: 300px; /* Max button size */
+        }
+        #yes {
+            background-color: red;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        #no {
+            background-color: white;
+            color: red;
+        }
+        #message {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        #gif-container {
+            display: none;
+            margin-top: 20px;
+        }
+        #gif-container img {
+            width: 80%; /* Make gif responsive */
+            max-width: 400px; /* Max gif size */
+            border-radius: 10px;
+            border: 5px solid red;
+        }
+        #hearts {
+            font-size: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="tulips">🌷💐🌷</div>
+    <div id="container">
+        <img id="pig" src="https://media.giphy.com/media/QvBoMEcQ7DQXK/giphy.gif" alt="Cute Pig GIF">
+        <div id="question">Will you be my Valentine?</div>
+        <button id="yes" onclick="acceptLove()">Yes</button>
+        <button id="no" onclick="declineLove()">No</button>
+        <p id="message"></p>
+        <div id="gif-container">
+            <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Cute Love GIF">
+        </div>
+        <div id="hearts">❤️💖❤️💖❤️</div>
+    </div>
+    
+    <script>
+        let noCount = 0;
+        const messages = [
+            "Chocolate kywyy ml ly kwrr😙🍫",  // Message 1
+            "Bby nw honnn🙄😾!!!",           // Message 4
+            "Sate soe lr b nw!!!!🔫😡",       // Message 2
+            "LEEEEEEE WK MA🐽🤬💢!!!"          // Message 3
+        ];
+        
+        // Custom function to cycle the message order: 1, 4, 2, 3
+        function getMessage() {
+            const order = [0, 1, 2, 3]; // Order: 1, 4, 2, 3
+            return messages[order[noCount]];
+        }
+
+        function declineLove() {
+            let yesButton = document.getElementById('yes');
+            if (noCount < 4) {
+                document.getElementById('message').innerText = getMessage();
+                let size = 20 + (noCount + 1) * 40;
+                yesButton.style.fontSize = size + 'px';
+                yesButton.style.padding = (noCount + 1) * 10 + 'px';
+                noCount++;
+            } else {
+                // After the 4th "No", make the "Yes" button fullscreen
+                yesButton.style.position = "fixed";
+                yesButton.style.top = "0";
+                yesButton.style.left = "0";
+                yesButton.style.width = "100vw"; // Full width
+                yesButton.style.height = "100vh"; // Full height
+                yesButton.style.fontSize = "50px"; // Bigger font size
+                yesButton.innerText = "YESSSS LOH PYWWWW LEEEEE";
+                document.getElementById('no').style.display = "none";
+                document.getElementById('message').innerText = "!!!!!!!!!!!!!!!!!!!!!!!🤬🐷💢";
+                yesButton.style.display = "flex";
+                yesButton.style.alignItems = "center";
+                yesButton.style.justifyContent = "center";
+            }
+        }
+
+        function acceptLove() {
+            document.body.innerHTML = "<h1>EHEHEHEHHE AYNN CX TL KWRRR💐💖🎈 ARRR BWRRRRRR😽💋😘!</h1>";
+            let gifContainer = document.createElement("div");
+            gifContainer.style.textAlign = "center";
+            let gifImg = document.createElement("img");
+            gifImg.src = "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif";
+            gifImg.alt = "Cute Love GIF";
+            gifImg.style.width = "80%";
+            gifImg.style.maxWidth = "400px";
+            gifImg.style.borderRadius = "10px";
+            gifImg.style.border = "5px solid red";
+            gifContainer.appendChild(gifImg);
+            document.body.appendChild(gifContainer);
+            let bottomHearts = document.createElement("div");
+            bottomHearts.innerHTML = "❤️💖❤️💖❤️💖❤️💖❤️";
+            bottomHearts.style.fontSize = "50px";
+            bottomHearts.style.marginTop = "20px";
+            document.body.appendChild(bottomHearts);
+        }
+    </script>
+</body>
+</html>
